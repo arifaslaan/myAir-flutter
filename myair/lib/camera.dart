@@ -57,7 +57,7 @@ class ScanPageState extends State<ScanPage> {
               color: Colors.blue,
               textColor: Colors.white,
               icon: Icon(Icons.camera_alt), //`Icon` to display
-              label: Text('Scan QR Code'), //`Text` to display
+              label: Text('QR Kodu Tarat'), //`Text` to display
               onPressed: () {
                 _scanQR();
               },

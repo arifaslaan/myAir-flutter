@@ -20,8 +20,8 @@ class DetailPageState extends State<DetailPage> {
     super.initState();
   }
   _getDatas () async{
-    await http.post(Uri.encodeFull('http://arifaslan.tech/projects/graduation_project/getStatusWithTcApi.php'),
-    body: {'kimlikno': widget.myAirID}).then((UriResponse) {
+    await http.post(Uri.encodeFull('http://arifaslan.tech/projects/design_project/getWithQrApi.php'),
+    body: {'qrcode': widget.myAirID}).then((UriResponse) {
       setState((){
         myDatas = [];
         myDatas = json.decode(UriResponse.body);
@@ -33,9 +33,133 @@ class DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _progressBarActive == true ? circularProgress:Center(
-        child: Text(
-          ''+myDatas[0]['name'],
-          style: new TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "MQ135: ",
+                  style: TextStyle(
+                    fontSize: 30,
+
+                  ),
+                ),
+                Text(
+                  ""+myDatas[0]['mq'],
+                  style: TextStyle(
+                    fontSize: 30,
+
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Grove 1: ",
+                  style: TextStyle(
+                    fontSize: 30,
+
+                  ),
+                ),
+                Text(
+                  ""+myDatas[0]['gr1'],
+                  style: TextStyle(
+                    fontSize: 30,
+
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Grove 2: ",
+                  style: TextStyle(
+                    fontSize: 30,
+
+                  ),
+                ),
+                Text(
+                  ""+myDatas[0]['gr2'],
+                  style: TextStyle(
+                    fontSize: 30,
+
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Nem: ",
+                  style: TextStyle(
+                    fontSize: 30,
+
+                  ),
+                ),
+                Text(
+                  ""+myDatas[0]['hum']+"%",
+                  style: TextStyle(
+                    fontSize: 30,
+
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Sıcaklık: ",
+                    style: TextStyle(
+                      fontSize: 30,
+
+                    ),
+                  ),
+                  Text(
+                    ""+myDatas[0]['tmp']+"°C",
+                    style: TextStyle(
+                      fontSize: 30,
+
+                    ),
+                  ),
+                  
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Genel Hava Kalitesi: ",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  ""+myDatas[0]['qbb'],
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
